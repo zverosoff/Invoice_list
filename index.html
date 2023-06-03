@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Vite App</title>
+  </head>
+  <body class="bg-slate-300 font-sans font-normal">
+    <div class="bg-white relative mx-auto w-[595px] h-100%">
+      <section class="absolute top-0 w-[595px] h-[245px] hidden" id="popupContainer">
+        <div class="fixed top-0 w-[595px] h-[932px] bg-gray-500" id="popupBackgroundBlocker">
+          <div class="relative h-104 bg-white px-12 py-6 flex flex-col">
+            <header class="flex flex-row justify-between mt-1">
+              <button class="text-red-700 enabled:hover:font-bold disabled:text-gray-300" id="btnDeleteItemList">
+                Delete
+              </button>
+              <button class="text-gray-600 hover:text-black" id="btnCloseContainer">Close</button>
+            </header>
+            <main class="flex flex-row justify-between mt-8">
+              <h1 class="text-4xl font-bold" id="textAdd">Add</h1>
+              <div class="font-bold self-end">
+                <label for="">Qty:</label>
+                <input class="w-16 border-b-2 outline-none" id="inputQtyElements" type="text" />
+              </div>
+              <div class="font-bold self-end">
+                <label for="">Cost:</label>
+                <input class="w-16 border-b-2 outline-none" required id="inputCostElements" type="text" />
+              </div>
+              <div class="font-bold self-end">
+                <label for="">Total:</label>
+                <span class="text-lg" id="inputTotalElements"></span>
+              </div>
+              <button
+                class="px-4 bg-black text-white rounded-2 rounded-lg enabled:hover:bg-black disabled:opacity-30 disabled:text-gray-500"
+                id="btnCreateItem"
+              >
+                Create
+              </button>
+            </main>
+            <footer class="mt-6 w-full">
+              <div class="flex-col w-full">
+                <div class="flex-row">
+                  <div class="flex-col">
+                    <div class="font-bold text-xs text-gray-600">
+                      <label for="">Work item:</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full mt-1">
+                  <input
+                    class="bg-gray-100 border-1 w-full h-full p-2"
+                    type="text"
+                    placeholder="Working on new functionality"
+                    id="inpItemTitle"
+                  />
+                </div>
+              </div>
+              <div class="flex-row mt-6">
+                <div class="flex-col">
+                  <div class="font-bold text-xs text-gray-600">
+                    <label for="">Description:</label>
+                  </div>
+                  <div class="w-full mt-1 h-32">
+                    <textarea
+                      class="bg-gray-100 border-1 w-full h-full p-2"
+                      id="inpDescription"
+                      style="resize: none"
+                      placeholder="Design block implementatino for user account based on ticket number OPT-3217 "
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </section>
+      <div class="pl-8 pr-8">
+        <header class="container">
+          <div class="flex flex-row pt-8 order-3">
+            <div class="text-zinc-400 pl-8 basis-1/2">
+              <h1 class="text-[44px] text-slate-400">
+                <label for=""
+                  >№<input
+                    class="w-32 border-b-2 focus:border-slate-500 focus:text-slate-500 outline-none"
+                    maxlength="4"
+                    type="number"
+                    id="documentNumber"
+                /></label>
+              </h1>
+            </div>
+            <div class="flex flex-col basis-1/2">
+              <div class="basis-1/2">
+                <div class="flex text-4xl">
+                  <h2>Invoice</h2>
+                </div>
+                <div class="flex flex-row mt-8">
+                  <div class="basis-1/2">
+                    <h4 class="font-bold">Issued</h4>
+                    <p class="text-sm">01 Jan, 2022</p>
+                  </div>
+                  <div class="basis-1/2">
+                    <h4 class="font-bold">Due</h4>
+                    <p class="text-sm">07 Jan, 2022</p>
+                  </div>
+                </div>
+                <div class="flex flex-row mt-8">
+                  <div class="basis-1/2">
+                    <h4 class="font-bold">From</h4>
+                    <p class="text-sm">Name or Company 123 Godly St. Internet, GW000 United States</p>
+                  </div>
+                  <div class="basis-1/2">
+                    <h4 class="font-bold">To</h4>
+                    <p class="text-sm">Name or Company 123 Godly St. Internet, GW000 United States</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <main class="flex flex-col mt-12">
+          <div>
+            <div class="flex flex-col">
+              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                  <div class="overflow-hidden">
+                    <table class="min-w-full">
+                      <thead class="bg-white border-b">
+                        <tr>
+                          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Item</th>
+                          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Cost</th>
+                          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Qty</th>
+                          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tableItems"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-10">
+              <div>
+                <button class="w-8 h-8 text-lg rounded-full bg-slate-200 hover:bg-gray-300" id="btnAddItem">+</button>
+              </div>
+            </div>
+            <div class="flex flex-row justify-end mt-10">
+              <div class="w-[257px] h-[37px]">
+                <section class="border-t-4 border-b-gray-800 pt-2">
+                  <div class="flex justify-between">
+                    <div>
+                      <h4>Subtotal</h4>
+                    </div>
+                    <div>
+                      <span id="subtotalResult"></span>
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div>
+                      <label for="">Discount (</label>
+                      <input id="discountInput" class="w-6 input-percentage outline-none" type="text" />%)
+                    </div>
+                    <div>
+                      <span id="discountResult"></span>
+                    </div>
+                  </div>
+                </section>
+                <section class="w-[257px] h-[19px] border-t-4 border-b-gray-800 mt-8">
+                  <div class="flex justify-between">
+                    <div>
+                      Total:
+                      <span id="totalResult"></span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer class="flex flex-row justify-end mt-32">
+          <section class="flex flex-col w-[257px] mt-40 mb-8">
+            <header class="flex flex-row justify-between">
+              <b>IBAN</b>
+              <input id="inpIBAN" class="w-32 border-b-2 focus:border-slate-500 outline-none" type="text" />
+            </header>
+            <main class="mt-4 text-sm text-gray-500">
+              <p>
+                This invoice is to be paid by wire transfer only, unless agreed otherwise and must be paid before the
+                date due specified above.
+              </p>
+              <footer>
+                <p>Thank you,</p>
+                <p>Your name</p>
+              </footer>
+            </main>
+          </section>
+        </footer>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
